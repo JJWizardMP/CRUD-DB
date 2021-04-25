@@ -17,7 +17,7 @@ class EmployeesModel{
         return $rows;
     }
 
-    public function insert_row($data){
+    public function add_row($data){
         try {
             $sql = 'INSERT INTO employees(Name, Email, Address, Phone) VALUES (:name, :email, :address, :phone)';
             $stmt= $this->db->prepare($sql);

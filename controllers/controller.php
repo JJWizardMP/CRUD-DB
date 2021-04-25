@@ -1,6 +1,9 @@
 <?php
-require('models/model.php');
-require('views/view.php');
+// directorio actual
+chdir('./controllers');
+require('./../models/model.php');
+require('./../views/view.php');
+chdir("../");
 
 class Controller{
     private $model;
@@ -16,10 +19,10 @@ class Controller{
         $html = $this->view->create_table($rows);
         return $html;
     }
-/*
-    public function insert_new($data){
-        $this->model->insert_row($data);
+
+    public function add_new($data){
+        $this->model->add_row($data);
         return $this->create_view_fulltable();
-    }*/
+    }
 }
 ?>

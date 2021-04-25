@@ -5,8 +5,8 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Boostrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+	<!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css'>
@@ -41,7 +41,7 @@
 						<a href="./dashboard.php" class="btn btn-default float-left" role="button"><p class="h2">Manage <b>Employees</b></p></a>
 					</div>
 					<div class="col-sm-6">
-						<a href="#addEmployeeModal" class="btn btn-info" data-toggle="modal"><i class="fas fa-plus-circle"></i> <span>Add New Employee</span></a>				
+						<a id="addnew" class="btn btn-info" data-toggle="modal"><i class="fas fa-plus-circle"></i> <span>Add New Employee</span></a>				
 						<div class="search-box">
 							<i class="fas fa-search"></i>
 						    <input type="text" class="form-control" placeholder="Search&hellip;">
@@ -61,7 +61,7 @@
 						<th>Actions</th>
 					</tr>
 				</thead>
-				<tbody id="DC">
+				<tbody id="Dinamic-table">
 					<?php echo $control->create_view_fulltable(); ?>
 				</tbody>
 			</table>
@@ -88,7 +88,7 @@
 <div id="addEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form id="add-form" action="./forms/process-insert.php" method="POST">
+			<form id="add-form" method="POST">
 				<div class="modal-header">						
 					<h4 class="modal-title">Add Employee <i class="fas fa-plus-circle"></i></h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -96,19 +96,19 @@
 				<div class="modal-body">					
 					<div class="form-group">
 						<label><i class="fas fa-user"></i> Name</label>
-						<input id="add-name" type="text" class="form-control" required>
+						<input id="add-name" name="name" type="text" class="form-control" required>
 					</div>
 					<div class="form-group">
 						<label><i class="fas fa-envelope"></i> Email</label>
-						<input id="add-email" type="email" class="form-control" required>
+						<input id="add-email" name="email" type="email" class="form-control" required>
 					</div>
 					<div class="form-group">
 						<label><i class="fas fa-address-card"></i> Address</label>
-						<textarea id="add-address" class="form-control" required></textarea>
+						<textarea id="add-address" name="address" class="form-control" required></textarea>
 					</div>
 					<div class="form-group">
 						<label><i class="fas fa-phone-alt"></i> Phone</label>
-						<input id="add-phone" type="text" class="form-control" required>
+						<input id="add-phone" name="phone" type="text" class="form-control" required>
 					</div>					
 				</div>
 				<div class="modal-footer">
@@ -176,16 +176,13 @@
 	</div>
 </div>
          <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-        <!-- partial -->
-        <script src="https://code.jquery.com/jquery-3.5.1.js"
-            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-                crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+
         <!--Font Awesome-->
         <script src="https://kit.fontawesome.com/ae2bc38384.js" crossorigin="anonymous"></script>
 		<!--Scripts-->
-		<script type="text/javascript" src="./assets/Scripts/form-insert.js"> </script>
+		<script type="text/javascript" src="./assets/Scripts/Actions.js"> </script>
 </body>
 </html>

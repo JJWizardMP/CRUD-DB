@@ -13,7 +13,7 @@ class View{
             $html = $html . "<td>";
             $html = $html . '<a href="#editEmployeeModal" class="edit" data-toggle="modal">
                                 <i class="fas fa-pencil-alt" data-toggle="tooltip" title="Edit"></i></a>';
-            $html = $html . '<a href="#deleteEmployeeModal" class="delete" data-toggle="modal">}
+            $html = $html . '<a href="#deleteEmployeeModal" class="delete" data-toggle="modal">
                                 <i class="fas fa-trash" data-toggle="tooltip" title="Delete"></i></a>';
             $html = $html . "</td>";
             $html = $html . "</tr>";

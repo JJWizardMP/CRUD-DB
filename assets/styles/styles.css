@@ -273,3 +273,5 @@ table.table .avatar {
     top: 8px;
     left: 10px;
 }
+
+.cursor-pointer {cursor: pointer;}

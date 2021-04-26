@@ -10,10 +10,11 @@
             ':email' => $_POST['email'],
             ':address' => $_POST['address'],
             ':phone' => $_POST['phone'],
+            ':id' => $_POST['id'],
         ];
         $response['success'] = true;
-        $response['message'] = 'Record added successfully!';
-        $response['table'] = $control->add_new_record($form);   
+        $response['message'] = 'Record updated successfully!';
+        $response['table'] = $control->update_record($form);   
     }
     catch (\Error $e) {
         $response['success'] = false;

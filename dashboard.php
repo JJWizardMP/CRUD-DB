@@ -37,19 +37,31 @@
 		<div class="table-wrapper">
 			<div class="table-title">
 				<div class="row">
-					<div class="col-sm-6">
-						<a href="./dashboard.php" class="btn btn-default float-left" role="button"><p class="h2">Manage <b>Employees</b></p></a>
+					<div class="col-sm-8">
+						<a href="./dashboard.php" class="btn btn-default float-left" 
+							role="button"><p class="h2">Manage <b>Employees</b></p></a>
 					</div>
-					<div class="col-sm-6">
-						<a id="addnew" class="btn btn-info" data-toggle="modal"><i class="fas fa-plus-circle"></i> <span>Add New Employee</span></a>				
-						<div class="search-box">
-							<i class="fas fa-search"></i>
-						    <input type="text" class="form-control" placeholder="Search&hellip;">
+					<div class="col-sm-4 float-right">
+						<div class="input-group rounded ">
+							<input id="search-term" name="search" type="search" 
+								class="form-control rounded" placeholder="Search by name" 
+								aria-label="Search" aria-describedby="search-addon" />
+							<button id="search-addon" class="input-group-text border-0">
+								<i class="fas fa-search"></i>
+							</button>
 						</div>
+						<br>
+						<a id="addnew" class="btn btn-info" data-toggle="modal">
+							<i class="fas fa-plus-circle"></i> <span>Add New Employee</span></a>				
 						<br>
 					</div>
 				</div>
 			</div>
+			<div id="alert" class="alert alert-dismissible alert-info text-center" 
+					style="margin-top:20px; display:none;">
+            	<button type="button" class="close" data-dismiss="alert">&times;</button>
+                <span id="alert_message"></span>
+            </div>  
 			<table class="table table-dark table-hover">
 				<thead>
 					<tr>
@@ -62,7 +74,10 @@
 					</tr>
 				</thead>
 				<tbody id="Dinamic-table">
-					<?php echo $control->create_view_fulltable(); ?>
+					<?php 
+						echo $control->create_view_fulltable();
+						$control->Close_Connection(); 
+					?>
 				</tbody>
 			</table>
 			<div class="clearfix">
@@ -77,7 +92,7 @@
 					<li class="page-item disabled"><a href="#" >Next</a></li>
 				</ul>
 			</div>
-			<br><br><br>
+			<br>
 			<a href="./logout.php" 
                 class="btn btn-secondary" 
                 role="button" aria-pressed="true">Log Out</a>
@@ -88,10 +103,11 @@
 <div id="addEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form id="add-form" method="POST">
+			<form id="add-form">
 				<div class="modal-header">						
 					<h4 class="modal-title">Add Employee <i class="fas fa-plus-circle"></i></h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<button type="button" class="close" data-dismiss="modal" 
+						aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">					
 					<div class="form-group">
@@ -104,7 +120,8 @@
 					</div>
 					<div class="form-group">
 						<label><i class="fas fa-address-card"></i> Address</label>
-						<textarea id="add-address" name="address" class="form-control" required></textarea>
+						<textarea id="add-address" name="address" 
+							class="form-control" required></textarea>
 					</div>
 					<div class="form-group">
 						<label><i class="fas fa-phone-alt"></i> Phone</label>
@@ -123,27 +140,33 @@
 <div id="editEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form>
+			<form id="edit-form" >
 				<div class="modal-header">						
 					<h4 class="modal-title">Edit Employee <i class="fas fa-user-edit"></i></h4>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<button type="button" class="close" data-dismiss="modal" 
+						aria-hidden="true">&times;</button>
 				</div>
-				<div class="modal-body">					
+				<div class="modal-body">
+					<input type="hidden" class="id" name="id">					
 					<div class="form-group">
 						<label><i class="fas fa-user"></i> Name</label>
-						<input type="text" class="form-control" required>
+						<input id="edit-name" name="name" type="text" 
+							class="form-control name" required>
 					</div>
 					<div class="form-group">
 						<label><i class="fas fa-envelope"></i> Email</label>
-						<input type="email" class="form-control" required>
+						<input id="edit-email" name="email" type="email" 
+							class="form-control email" required>
 					</div>
 					<div class="form-group">
 						<label><i class="fas fa-address-card"></i> Address</label>
-						<textarea class="form-control" required></textarea>
+						<textarea id="edit-address" name="address" 
+							class="form-control address" required></textarea>
 					</div>
 					<div class="form-group">
 						<label><i class="fas fa-phone-alt"></i> Phone</label>
-						<input type="text" class="form-control" required>
+						<input id="edit-phone" name="phone" 
+							type="text" class="form-control phone" required>
 					</div>					
 				</div>
 				<div class="modal-footer">
@@ -158,12 +181,13 @@
 <div id="deleteEmployeeModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form>
+			<form id="delete-form">
 				<div class="modal-header">						
 					<h4 class="modal-title">Delete Employee <i class="fas fa-user-edit"></i></h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-				<div class="modal-body">					
+				<div class="modal-body">
+					<input id="id-delete" type="hidden" class="id" name="id">										
 					<p>Are you sure you want to delete these Record?</p>
 					<p class="text-warning"><small>This action cannot be undone.</small></p>
 				</div>

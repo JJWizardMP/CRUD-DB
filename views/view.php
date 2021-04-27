@@ -3,10 +3,10 @@
 
         public function create_table($rows, $page){
             $html = "";
-            $i = (((int)$page) * 5) - 5;
+            $i = (((int)$page) * 5) - 4;
             foreach($rows as $row){
                 $html .= "<tr>";
-                $html .= "<td>" . ((int)$i) + 1 . "</td>";
+                $html .= "<td>" . $i. "</td>";
                 $html .= "<td>" . $row["Name"] . "</td>";
                 $html .= "<td>" . $row["Email"] . "</td>";
                 $html .= "<td>" . $row["Address"] . "</td>";

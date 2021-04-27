@@ -1,4 +1,7 @@
 $(document).ready(function () {
+  // Create Pagination
+  load_data();  
+
   // Add to database
   $('#addnew').click(function(){
 	  $('#addEmployeeModal').modal('show');
@@ -15,12 +18,12 @@ $(document).ready(function () {
     }).done(function (response) {
         $('#addEmployeeModal').modal('hide');
         if(response.success){
+          // update content
+          load_data(); 
           // show success message
           $('#alert').show();
           $('#alert_message').html(response.message);
-          // update content
-          $('#Dinamic-table').html(response.table);
-          // clear all fields of form
+           // clear all fields of form
           $('#add-form input[type="text"]').val(""); 
           $('#add-form input[type="email"]').val(""); 
           $('#add-form textarea').val("");        
@@ -48,12 +51,11 @@ $(document).ready(function () {
     }).done(function (response) {
         $('#editEmployeeModal').modal('hide');
         if(response.success){
+          // update content
+          load_data();  
           // show success message
           $('#alert').show();
-          $('#alert_message').html(response.message);
-          // update content
-          $('#Dinamic-table').html(response.table);
-          // clear all fields of form     
+          $('#alert_message').html(response.message);   
         }
     });
     event.preventDefault();
@@ -64,7 +66,6 @@ $(document).ready(function () {
 		$('#id-delete').val( $(this).data('id') );
 		$('#deleteEmployeeModal').modal('show');
   });
-  
   $("#delete-form").submit(function (event) {
     // prepare data from form
     var addform = $(this).serialize();
@@ -77,11 +78,11 @@ $(document).ready(function () {
     }).done(function (response) {
         $('#deleteEmployeeModal').modal('hide');
         if(response.success){
+          // update content
+          load_data();  
           // show success message
           $('#alert').show();
           $('#alert_message').html(response.message);
-          // update content
-          $('#Dinamic-table').html(response.table);
         }
     });
     event.preventDefault();
@@ -104,19 +105,41 @@ $(document).ready(function () {
         if(response.success){
           // update content
           $('#Dinamic-table').html(response.table);
+          $('#Dinamic-pagination').html(response.pagination);
         }
     });
   });
-
+  // Pagination
+  $(document).on('click', '.page-link', function(){  
+       var page = $(this).attr("id");  
+       load_data(page);  
+  });  
 });
-
+// Load table and pagination
+function load_data(page){  
+  $.ajax({  
+    method:"POST",  
+    url:"./controllers/pagination.php",  
+    data:{page:page},  
+    dataType: "json",
+    encode: true,
+  }).done(function (response) {
+      if(response.success){
+        // update content
+        $('#Dinamic-table').html(response.table);
+        $('#Dinamic-pagination').html(response.pagination);
+      }
+  });
+}  
+// Get details from db
 function getDetails(id){
 	$.ajax({
 		method: 'POST',
 		url: './controllers/fetch_row.php',
 		data: {id:id},
-		dataType: 'json',
-		success: function(response){
+    dataType: 'json',
+    encode: true,
+  }).done( function(response){
 			if(response.success){
 				$('.id').val(response.data.ID);
 				$('.name').val(response.data.Name);
@@ -124,6 +147,5 @@ function getDetails(id){
 				$('.address').val(response.data.Address);
 				$('.phone').val(response.data.Phone);
 			}
-		}
-	});
+		});
 }

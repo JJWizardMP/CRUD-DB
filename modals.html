@@ -1,0 +1,100 @@
+<!-- Add Modal HTML -->
+<div id="addEmployeeModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form id="add-form">
+				<div class="modal-header">						
+					<h4 class="modal-title">Add Employee <i class="fas fa-plus-circle"></i></h4>
+					<button type="button" class="close" data-dismiss="modal" 
+						aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">					
+					<div class="form-group">
+						<label><i class="fas fa-user"></i> Name</label>
+						<input id="add-name" name="name" type="text" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label><i class="fas fa-envelope"></i> Email</label>
+						<input id="add-email" name="email" type="email" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label><i class="fas fa-address-card"></i> Address</label>
+						<textarea id="add-address" name="address" 
+							class="form-control" required></textarea>
+					</div>
+					<div class="form-group">
+						<label><i class="fas fa-phone-alt"></i> Phone</label>
+						<input id="add-phone" name="phone" type="text" class="form-control" required>
+					</div>					
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-secondary" data-dismiss="modal" value="Cancel">
+					<input type="submit" class="btn btn-info" name="submit" value="Add" >
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- Edit Modal HTML -->
+<div id="editEmployeeModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form id="edit-form" >
+				<div class="modal-header">						
+					<h4 class="modal-title">Edit Employee <i class="fas fa-user-edit"></i></h4>
+					<button type="button" class="close" data-dismiss="modal" 
+						aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<input type="hidden" class="id" name="id">					
+					<div class="form-group">
+						<label><i class="fas fa-user"></i> Name</label>
+						<input id="edit-name" name="name" type="text" 
+							class="form-control name" required>
+					</div>
+					<div class="form-group">
+						<label><i class="fas fa-envelope"></i> Email</label>
+						<input id="edit-email" name="email" type="email" 
+							class="form-control email" required>
+					</div>
+					<div class="form-group">
+						<label><i class="fas fa-address-card"></i> Address</label>
+						<textarea id="edit-address" name="address" 
+							class="form-control address" required></textarea>
+					</div>
+					<div class="form-group">
+						<label><i class="fas fa-phone-alt"></i> Phone</label>
+						<input id="edit-phone" name="phone" 
+							type="text" class="form-control phone" required>
+					</div>					
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-secondary" data-dismiss="modal" value="Cancel">
+					<input type="submit" class="btn btn-info" value="Save">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<!-- Delete Modal HTML -->
+<div id="deleteEmployeeModal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form id="delete-form">
+				<div class="modal-header">						
+					<h4 class="modal-title">Delete Employee <i class="fas fa-user-edit"></i></h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="modal-body">
+					<input id="id-delete" type="hidden" class="id" name="id">										
+					<p>Are you sure you want to delete these Record?</p>
+					<p class="text-warning"><small>This action cannot be undone.</small></p>
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-secondary" data-dismiss="modal" value="Cancel">
+					<input type="submit" class="btn btn-danger" value="Delete">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

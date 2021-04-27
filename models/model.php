@@ -19,6 +19,20 @@
             return $rows;
         }
 
+        public function get_limit_employees($start_from, $record_per_page){
+            try{
+                $sql = 'SELECT * FROM employees LIMIT :start, :records';
+                $stmt= $this->db->prepare($sql);
+                $stmt->bindValue(':start', (int) $start_from, PDO::PARAM_INT);
+                $stmt->bindValue(':records', (int) $record_per_page, PDO::PARAM_INT);
+                $stmt->execute();
+                $rows = $stmt->fetchAll();
+            }catch (PDOException $e) {
+                die();
+            }
+            return $rows;
+        }
+
         public function search_byid($id){
             try {
                 $stmt = $this->db->prepare('SELECT * FROM employees WHERE id = :id');
